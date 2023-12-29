@@ -33,7 +33,7 @@ public class ShowPanelCommand : SimpleCommand
 
                     mvm.SetView(obj.GetComponent<MainView>());
                 }
-
+                SendNotification(PureNotification.UPDATE_PLAYER_INFO, Facade.RetrieveProxy(PlayerProxy.NAME).Data);
 
                 break;
             case"RolePanel":
@@ -55,9 +55,11 @@ public class ShowPanelCommand : SimpleCommand
 
                     obj.transform.SetParent(GameObject.Find("Canvas").transform, false);
 
-                    rvm.ViewComponent = obj.GetComponent<RoleView>();
+                    rvm.SetView(obj.GetComponent<RoleView>());
                     
                 }
+                SendNotification(PureNotification.UPDATE_PLAYER_INFO, Facade.RetrieveProxy(PlayerProxy.NAME).Data);
+
                 break;
             default:
                 break;

@@ -22,6 +22,18 @@ public class RoleViewMediator : Mediator
         };
     }
 
+    public void SetView(RoleView view)
+    {
+        ViewComponent=view;
+        view.btnClose.onClick.AddListener(() =>
+        {
+            SendNotification(PureNotification.HIDE_PANEL, this);
+        });
+        view.btnGrown.onClick.AddListener(() =>
+        {
+            SendNotification(PureNotification.LEV_UP);
+        });
+    }
 
     public override void HandleNotification(INotification notification)
     {
@@ -30,7 +42,11 @@ public class RoleViewMediator : Mediator
         {
             case PureNotification.UPDATE_PLAYER_INFO:
                 //收到更新通知做逻辑处理
-                (ViewComponent as RoleView).UpdateInfo(notification.Body as PlayerDataObj);
+                if (ViewComponent!=null)
+                {
+                    (ViewComponent as RoleView).UpdateInfo(notification.Body as PlayerDataObj);
+
+                }
                 break;
         }
     }

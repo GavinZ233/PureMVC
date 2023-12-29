@@ -32,6 +32,16 @@ public class GameFacade : Facade
             return new ShowPanelCommand();
         });
 
+        RegisterCommand(PureNotification.HIDE_PANEL, () =>
+        {
+            return new HidePanelCommand();
+        });
+
+        RegisterCommand(PureNotification.LEV_UP, () =>
+        {
+            return new LevUpCommand();
+        });
+
     }
 
     public void StartUp()

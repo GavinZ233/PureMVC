@@ -14,6 +14,14 @@ public class Main : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            GameFacade.Instance.SendNotification(PureNotification.SHOW_PANEL, "MainPanel");
+        }
+        else if (Input.GetKeyDown(KeyCode.N))
+        {
+            GameFacade.Instance.SendNotification(PureNotification.HIDE_PANEL, GameFacade.Instance.RetrieveMediator(MainViewMediator.NAME));
+
+        }
     }
 }
